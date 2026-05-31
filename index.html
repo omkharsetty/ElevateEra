@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ElevateEra Enterprises LLC builds focused Android apps for practical business and consumer needs.">
+  <title>ElevateEra Enterprises LLC | Android App Development</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --ink: #10201b;
+      --muted: #5e6b66;
+      --line: #d9e3dd;
+      --paper: #f7faf8;
+      --white: #ffffff;
+      --green: #24b36b;
+      --green-dark: #087044;
+      --blue: #1467d8;
+      --gold: #d2932a;
+      --shadow: 0 24px 70px rgba(18, 35, 29, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .shell {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(247, 250, 248, 0.9);
+      border-bottom: 1px solid rgba(16, 32, 27, 0.08);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      border-radius: 8px;
+      box-shadow: 0 12px 28px rgba(36, 179, 107, 0.25);
+    }
+
+    .brand span:last-child {
+      display: block;
+      max-width: 210px;
+      line-height: 1.15;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.94rem;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--green-dark);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 46px;
+      padding: 0 18px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      font-weight: 700;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      color: var(--white);
+      background: var(--green-dark);
+      box-shadow: 0 16px 34px rgba(8, 112, 68, 0.25);
+    }
+
+    .button-secondary {
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.78);
+      border-color: rgba(16, 32, 27, 0.13);
+    }
+
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 72px);
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      color: var(--white);
+      background: #061511;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(6, 21, 17, 0.95) 0%, rgba(6, 21, 17, 0.74) 42%, rgba(6, 21, 17, 0.12) 100%),
+        url("assets/android-app-development-hero.png") right center / cover no-repeat;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 120px;
+      background: linear-gradient(180deg, rgba(6, 21, 17, 0), var(--paper));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      padding: 96px 0 140px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #b7f4d3;
+      font-size: 0.86rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 18px 0 20px;
+      font-size: clamp(2.9rem, 7vw, 5.9rem);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 610px;
+      margin: 0 0 32px;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-proof {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 42px;
+      max-width: 620px;
+    }
+
+    .proof-item {
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .proof-item strong {
+      display: block;
+      font-size: 1.05rem;
+      line-height: 1.2;
+    }
+
+    .proof-item span {
+      display: block;
+      margin-top: 6px;
+      color: rgba(255, 255, 255, 0.66);
+      font-size: 0.82rem;
+    }
+
+    section {
+      padding: 92px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 34px;
+    }
+
+    .section-head h2 {
+      max-width: 650px;
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      max-width: 430px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .service {
+      min-height: 260px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: 0 10px 32px rgba(18, 35, 29, 0.06);
+    }
+
+    .icon-box {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+      color: var(--green-dark);
+      background: #e6f7ee;
+      border-radius: 8px;
+    }
+
+    .service h3,
+    .step h3 {
+      margin: 0 0 10px;
+      font-size: 1.22rem;
+      line-height: 1.25;
+    }
+
+    .service p,
+    .step p,
+    .detail p,
+    .contact-copy {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .process-band {
+      background: var(--white);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--line);
+    }
+
+    .step {
+      min-height: 230px;
+      padding: 26px;
+      background: var(--white);
+    }
+
+    .step-number {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      margin-bottom: 24px;
+      color: var(--green-dark);
+      background: #e6f7ee;
+      border-radius: 8px;
+      font-weight: 800;
+    }
+
+    .details-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 34px;
+      align-items: start;
+    }
+
+    .detail-panel {
+      padding: 34px;
+      color: var(--white);
+      background: #0b1f19;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .detail-panel h2 {
+      margin: 0 0 16px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.05;
+    }
+
+    .detail-panel p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.74);
+    }
+
+    .detail-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .detail {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 18px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .detail span {
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .detail strong {
+      font-size: 1rem;
+    }
+
+    .contact-band {
+      padding: 84px 0;
+      color: var(--white);
+      background: #10201b;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .contact-layout h2 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 1;
+    }
+
+    .contact-copy {
+      max-width: 680px;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    footer {
+      padding: 26px 0;
+      color: var(--muted);
+      background: #08130f;
+      font-size: 0.9rem;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    @media (max-width: 860px) {
+      .shell {
+        width: min(100% - 28px, 680px);
+      }
+
+      .nav {
+        min-height: 66px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero::before {
+        background:
+          linear-gradient(180deg, rgba(6, 21, 17, 0.9) 0%, rgba(6, 21, 17, 0.74) 58%, rgba(6, 21, 17, 0.3) 100%),
+          url("assets/android-app-development-hero.png") center bottom / cover no-repeat;
+      }
+
+      .hero-content {
+        padding: 78px 0 170px;
+      }
+
+      .hero-proof,
+      .service-grid,
+      .steps,
+      .details-layout,
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-head p {
+        margin-top: 14px;
+      }
+
+      .detail {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .footer-row {
+        display: block;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .brand span:last-child {
+        max-width: 170px;
+        font-size: 0.94rem;
+      }
+
+      .hero-actions {
+        display: grid;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      section {
+        padding: 68px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav shell" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="ElevateEra Enterprises LLC home">
+        <span class="brand-mark"><i data-lucide="smartphone"></i></span>
+        <span>ElevateEra Enterprises LLC</span>
+      </a>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#company">Company</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-label="Android app development">
+      <div class="shell hero-content">
+        <span class="eyebrow"><i data-lucide="badge-check"></i> Texas LLC | Android Apps</span>
+        <h1>Simple Android apps, built with purpose.</h1>
+        <p class="hero-copy">ElevateEra Enterprises LLC develops focused Android applications for everyday business and consumer workflows, from idea validation to polished mobile experiences.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#contact"><i data-lucide="send"></i> Start a Project</a>
+          <a class="button button-secondary" href="#services"><i data-lucide="layers"></i> View Services</a>
+        </div>
+        <div class="hero-proof" aria-label="Company highlights">
+          <div class="proof-item">
+            <strong>Texas LLC</strong>
+            <span>Domestic limited liability company</span>
+          </div>
+          <div class="proof-item">
+            <strong>805194620</strong>
+            <span>Secretary of State file number</span>
+          </div>
+          <div class="proof-item">
+            <strong>08/22/2023</strong>
+            <span>Filing effective date</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Android development for lean, practical product ideas.</h2>
+          <p>Built for founders, small businesses, and operators who need a usable mobile app without unnecessary complexity.</p>
+        </div>
+        <div class="service-grid">
+          <article class="service">
+            <div class="icon-box"><i data-lucide="pen-tool"></i></div>
+            <h3>App Planning</h3>
+            <p>Turn an idea into a focused feature set, user flow, and release plan before development starts.</p>
+          </article>
+          <article class="service">
+            <div class="icon-box"><i data-lucide="code-2"></i></div>
+            <h3>Android Builds</h3>
+            <p>Create responsive Android apps with clean screens, dependable navigation, and maintainable code.</p>
+          </article>
+          <article class="service">
+            <div class="icon-box"><i data-lucide="rocket"></i></div>
+            <h3>Launch Support</h3>
+            <p>Prepare app assets, release builds, store-ready descriptions, and practical post-launch improvements.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="process-band">
+      <div class="shell">
+        <div class="section-head">
+          <h2>A straightforward path from concept to app.</h2>
+          <p>The process stays small enough for quick movement and structured enough to keep the product useful.</p>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <span class="step-number">1</span>
+            <h3>Define</h3>
+            <p>Clarify the audience, core job, screens, and success criteria for the first version.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">2</span>
+            <h3>Design</h3>
+            <p>Map clean mobile flows and interface states that fit Android patterns.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">3</span>
+            <h3>Build</h3>
+            <p>Develop the app in focused milestones with testable progress at each step.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">4</span>
+            <h3>Release</h3>
+            <p>Package, review, and refine the app so it is ready for real users.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="company">
+      <div class="shell details-layout">
+        <div class="detail-panel">
+          <h2>Company details from the certificate of formation.</h2>
+          <p>These details are based on the Texas Secretary of State filing attached for ElevateEra Enterprises LLC.</p>
+        </div>
+        <div class="detail-list">
+          <div class="detail">
+            <span>Legal Name</span>
+            <strong>ElevateEra Enterprises LLC</strong>
+          </div>
+          <div class="detail">
+            <span>Entity Type</span>
+            <strong>Domestic Limited Liability Company</strong>
+          </div>
+          <div class="detail">
+            <span>File Number</span>
+            <strong>805194620</strong>
+          </div>
+          <div class="detail">
+            <span>Effective Date</span>
+            <strong>August 22, 2023</strong>
+          </div>
+          <div class="detail">
+            <span>Management</span>
+            <strong>Member-managed LLC</strong>
+          </div>
+          <div class="detail">
+            <span>Office</span>
+            <strong>Dallas, Texas</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-band">
+      <div class="shell contact-layout">
+        <div>
+          <h2>Ready to shape an Android app?</h2>
+          <p class="contact-copy">For project inquiries, add your preferred business email, phone number, or intake form before publishing. The rest of the page is ready to host as a static website.</p>
+        </div>
+        <a class="button button-primary" href="mailto:"><i data-lucide="mail"></i> Add Contact Info</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-row">
+      <span>&copy; 2026 ElevateEra Enterprises LLC. All rights reserved.</span>
+      <span>Android app development | Dallas, Texas</span>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons({
+      attrs: {
+        width: 20,
+        height: 20,
+        "stroke-width": 2
+      }
+    });
+  </script>
+</body>
+</html>
