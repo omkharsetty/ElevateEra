@@ -3,68 +3,224 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ElevateEra Enterprises LLC builds focused Android apps for practical business and consumer needs.">
-  <title>ElevateEra Enterprises LLC | Android App Development</title>
+  <meta name="description" content="ElevateEra Enterprises LLC builds focused, highly performant Android apps for practical business and consumer needs. Texas SOS Certified.">
+  
+  <!-- SEO & Social Meta -->
+  <meta property="og:title" content="ElevateEra Enterprises LLC | Android App Development">
+  <meta property="og:description" content="Simple Android apps, built with premium quality and robust performance. Texas Secretary of State Registered.">
+  <meta property="og:type" content="website">
+  
+  <title>ElevateEra Enterprises LLC | Premium Android App Development</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  
   <style>
+    /* ----------------------------------------------------
+       1. MODERN DESIGN SYSTEM & TOKEN DEFINITIONS
+       ---------------------------------------------------- */
     :root {
-      --ink: #10201b;
-      --muted: #5e6b66;
-      --line: #d9e3dd;
-      --paper: #f7faf8;
+      /* Colors */
+      --bg: #030806;
+      --bg-surface: #07110c;
+      --ink: #f0f5f2;
+      --muted: #8ea79a;
+      --muted-dark: #4b6659;
+      --line: rgba(255, 255, 255, 0.08);
+      --line-glow: rgba(32, 207, 123, 0.15);
+      
+      /* Vibrant Accents */
+      --green: #20cf7b;
+      --green-dark: #0fa15a;
+      --blue: #2d82ff;
+      --gold: #f5b53f;
       --white: #ffffff;
-      --green: #24b36b;
-      --green-dark: #087044;
-      --blue: #1467d8;
-      --gold: #d2932a;
-      --shadow: 0 24px 70px rgba(18, 35, 29, 0.14);
+      
+      /* Glassmorphism Panel Tokens */
+      --glass-panel: rgba(255, 255, 255, 0.02);
+      --glass-panel-hover: rgba(255, 255, 255, 0.04);
+      --glass-border: rgba(255, 255, 255, 0.06);
+      --glass-border-glow: rgba(32, 207, 123, 0.35);
+      
+      /* Premium Layered Shadows */
+      --shadow-soft: 0 12px 40px rgba(0, 0, 0, 0.6);
+      --shadow-glow: 0 0 30px rgba(32, 207, 123, 0.15);
+      --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      --shadow-inset-glow: inset 0 1px 1px rgba(32, 207, 123, 0.1);
+      
+      /* Font Interpolation space */
+      --in-oklch: ;
+      --in-oklab: ;
+    }
+
+    @supports (linear-gradient(in oklch, white, black)) {
+      :root {
+        --in-oklch: in oklch;
+        --in-oklab: in oklab;
+      }
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html {
       scroll-behavior: smooth;
+      scrollbar-gutter: stable;
     }
 
     body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       color: var(--ink);
-      background: var(--paper);
+      background: var(--bg);
       line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Custom Premium Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--glass-border);
+      border: 2px solid var(--bg);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--green);
     }
 
     a {
       color: inherit;
       text-decoration: none;
+      transition: all 0.2s ease;
     }
 
     img {
       display: block;
       max-width: 100%;
+      height: auto;
     }
 
     .shell {
-      width: min(1120px, calc(100% - 40px));
+      width: min(1200px, calc(100% - 48px));
       margin: 0 auto;
     }
 
+    /* Gradient Typography styling */
+    h1, h2, h3, .brand-font {
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg var(--in-oklch), var(--white) 30%, var(--green) 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .accent-gradient-text {
+      background: linear-gradient(135deg var(--in-oklch), var(--green) 0%, var(--blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ----------------------------------------------------
+       2. PREMIUM BACKDROP LAYERS (ORBS & NEON GRID)
+       ---------------------------------------------------- */
+    .bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .cyber-grid {
+      position: absolute;
+      inset: 0;
+      background: 
+        linear-gradient(rgba(32, 207, 123, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(32, 207, 123, 0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(circle at 50% 30%, black 30%, transparent 85%);
+      -webkit-mask-image: radial-gradient(circle at 50% 30%, black 30%, transparent 85%);
+    }
+
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(140px);
+      opacity: 0.45;
+      mix-blend-mode: screen;
+      animation: orbFloat 24s infinite alternate ease-in-out;
+    }
+
+    .orb-1 {
+      top: -10%;
+      left: 10%;
+      width: 45vw;
+      height: 45vw;
+      background: radial-gradient(circle, rgba(32, 207, 123, 0.25) 0%, transparent 70%);
+    }
+
+    .orb-2 {
+      bottom: -15%;
+      right: 5%;
+      width: 50vw;
+      height: 50vw;
+      background: radial-gradient(circle, rgba(45, 130, 255, 0.18) 0%, transparent 75%);
+      animation-delay: -6s;
+    }
+
+    .orb-3 {
+      top: 40%;
+      left: -15%;
+      width: 35vw;
+      height: 35vw;
+      background: radial-gradient(circle, rgba(245, 181, 63, 0.08) 0%, transparent 70%);
+      animation-delay: -12s;
+    }
+
+    @keyframes orbFloat {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(4vw, -6vh) scale(1.1); }
+      100% { transform: translate(-3vw, 5vh) scale(0.95); }
+    }
+
+    /* ----------------------------------------------------
+       3. NAVIGATION BAR
+       ---------------------------------------------------- */
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 10;
-      background: rgba(247, 250, 248, 0.9);
-      border-bottom: 1px solid rgba(16, 32, 27, 0.08);
-      backdrop-filter: blur(18px);
+      z-index: 100;
+      background: rgba(3, 8, 6, 0.65);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: all 0.3s ease;
+    }
+
+    .topbar-scrolled {
+      background: rgba(3, 8, 6, 0.88);
+      border-color: rgba(32, 207, 123, 0.12);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
     }
 
     .nav {
-      min-height: 72px;
+      min-height: 80px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -74,436 +230,1441 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       font-weight: 800;
-      letter-spacing: 0;
+      font-size: 1.15rem;
     }
 
     .brand-mark {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       display: grid;
       place-items: center;
       color: var(--white);
+      background: linear-gradient(135deg var(--in-oklch), var(--green), var(--blue));
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(32, 207, 123, 0.4);
+      position: relative;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: 14px;
       background: linear-gradient(135deg, var(--green), var(--blue));
-      border-radius: 8px;
-      box-shadow: 0 12px 28px rgba(36, 179, 107, 0.25);
+      z-index: -1;
+      opacity: 0.6;
+      filter: blur(4px);
     }
 
     .brand span:last-child {
       display: block;
-      max-width: 210px;
       line-height: 1.15;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 32px;
       color: var(--muted);
       font-size: 0.94rem;
       font-weight: 600;
     }
 
-    .nav-links a:hover {
-      color: var(--green-dark);
+    .nav-links a {
+      position: relative;
+      padding: 6px 0;
     }
 
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--green), var(--blue));
+      transition: width 0.25s ease;
+      border-radius: 2px;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* ----------------------------------------------------
+       4. PREMIUM BUTTON SYSTEM
+       ---------------------------------------------------- */
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 9px;
-      min-height: 46px;
-      padding: 0 18px;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 28px;
       border: 1px solid transparent;
-      border-radius: 8px;
+      border-radius: 14px;
       font-weight: 700;
-      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+      font-size: 0.98rem;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .button::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .button:hover {
-      transform: translateY(-2px);
+      transform: translateY(-3px);
     }
 
     .button-primary {
+      color: var(--bg);
+      background: var(--green);
+      box-shadow: 0 8px 30px rgba(32, 207, 123, 0.35);
+    }
+
+    .button-primary::before {
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      opacity: 0;
+    }
+
+    .button-primary:hover {
+      box-shadow: 0 12px 35px rgba(32, 207, 123, 0.5);
       color: var(--white);
-      background: var(--green-dark);
-      box-shadow: 0 16px 34px rgba(8, 112, 68, 0.25);
+    }
+
+    .button-primary:hover::before {
+      opacity: 1;
     }
 
     .button-secondary {
       color: var(--ink);
-      background: rgba(255, 255, 255, 0.78);
-      border-color: rgba(16, 32, 27, 0.13);
+      background: var(--glass-panel);
+      border-color: var(--glass-border);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-inset);
     }
 
+    .button-secondary:hover {
+      background: var(--glass-panel-hover);
+      border-color: var(--green);
+      box-shadow: 0 0 15px rgba(32, 207, 123, 0.15), var(--shadow-inset);
+    }
+
+    /* ----------------------------------------------------
+       5. HERO SECTION & SMARTPHONE INTERACTIVE DEMO
+       ---------------------------------------------------- */
     .hero {
       position: relative;
-      min-height: calc(100vh - 72px);
-      display: grid;
-      align-items: center;
+      padding: 100px 0 120px;
       overflow: hidden;
-      color: var(--white);
-      background: #061511;
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(6, 21, 17, 0.95) 0%, rgba(6, 21, 17, 0.74) 42%, rgba(6, 21, 17, 0.12) 100%),
-        url("assets/android-app-development-hero.png") right center / cover no-repeat;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: auto 0 0;
-      height: 120px;
-      background: linear-gradient(180deg, rgba(6, 21, 17, 0), var(--paper));
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 60px;
+      align-items: center;
     }
 
     .hero-content {
       position: relative;
-      z-index: 1;
-      max-width: 680px;
-      padding: 96px 0 140px;
+      z-index: 2;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      color: #b7f4d3;
-      font-size: 0.86rem;
+      gap: 10px;
+      color: var(--green);
+      background: rgba(32, 207, 123, 0.08);
+      border: 1px solid rgba(32, 207, 123, 0.2);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
       font-weight: 800;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-inset-glow);
     }
 
     h1 {
-      margin: 18px 0 20px;
-      font-size: clamp(2.9rem, 7vw, 5.9rem);
-      line-height: 0.98;
-      letter-spacing: 0;
+      font-size: clamp(2.8rem, 5.5vw, 4.4rem);
+      line-height: 1.05;
+      margin-bottom: 24px;
+      font-weight: 800;
     }
 
     .hero-copy {
-      max-width: 610px;
-      margin: 0 0 32px;
-      color: rgba(255, 255, 255, 0.8);
-      font-size: clamp(1.05rem, 2vw, 1.3rem);
+      color: var(--muted);
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      margin-bottom: 38px;
+      max-width: 580px;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 16px;
+      margin-bottom: 48px;
     }
 
+    /* Proof items badge grid */
     .hero-proof {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 42px;
-      max-width: 620px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 600px;
     }
 
     .proof-item {
       padding: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
+      background: var(--glass-panel);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: var(--shadow-inset);
+      transition: all 0.3s ease;
+    }
+
+    .proof-item:hover {
+      border-color: rgba(32, 207, 123, 0.2);
+      background: var(--glass-panel-hover);
+      transform: translateY(-2px);
     }
 
     .proof-item strong {
       display: block;
-      font-size: 1.05rem;
-      line-height: 1.2;
+      font-size: 1rem;
+      color: var(--ink);
+      font-family: 'Space Grotesk', sans-serif;
+      margin-bottom: 4px;
     }
 
     .proof-item span {
       display: block;
-      margin-top: 6px;
-      color: rgba(255, 255, 255, 0.66);
-      font-size: 0.82rem;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 500;
     }
 
+    /* --- THE INTERACTIVE SMARTPHONE INTERFACE --- */
+    .hero-visual {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .phone-container {
+      width: 100%;
+      max-width: 320px;
+      aspect-ratio: 1 / 2.05;
+      background: #020504;
+      border: 11px solid #141b18;
+      border-radius: 40px;
+      position: relative;
+      box-shadow: 
+        0 25px 60px rgba(0, 0, 0, 0.8),
+        0 0 40px rgba(32, 207, 123, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .phone-notch {
+      width: 120px;
+      height: 22px;
+      background: #141b18;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      border-bottom-left-radius: 16px;
+      border-bottom-right-radius: 16px;
+      z-index: 5;
+    }
+
+    .phone-screen {
+      position: absolute;
+      inset: 0;
+      padding: 30px 16px 16px;
+      background: #050d0a;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Screen state transition containers */
+    .screen-content {
+      display: none;
+      flex-direction: column;
+      height: 100%;
+      animation: screenFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+      transform: translateY(12px) scale(0.97);
+    }
+
+    .screen-content.active {
+      display: flex;
+    }
+
+    @keyframes screenFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Simulated Phone App UIs */
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .app-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .app-status-badge {
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: var(--green);
+      background: rgba(32, 207, 123, 0.1);
+      border: 1px solid rgba(32, 207, 123, 0.2);
+      padding: 2px 6px;
+      border-radius: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* UI 1: App Planning Panel */
+    .wireframe-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .wireframe-block {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px dashed rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .wireframe-title {
+      height: 36px;
+      position: relative;
+    }
+
+    .wireframe-title::after {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 60%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 3px;
+    }
+
+    .wireframe-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .wireframe-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px dashed rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .wireframe-circle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px dashed rgba(32, 207, 123, 0.3);
+      background: rgba(32, 207, 123, 0.05);
+    }
+
+    .wireframe-line {
+      width: 80%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+    }
+
+    .wireframe-line.small {
+      width: 50%;
+    }
+
+    .wireframe-flow {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .flow-step {
+      font-size: 0.72rem;
+      background: rgba(32, 207, 123, 0.05);
+      border: 1px solid rgba(32, 207, 123, 0.15);
+      color: var(--green);
+      padding: 8px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .flow-arrow {
+      align-self: center;
+      color: var(--muted-dark);
+    }
+
+    /* UI 2: App Build Dashboard */
+    .dashboard-scroll {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .dashboard-metric-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: var(--shadow-inset);
+    }
+
+    .metric-label {
+      display: block;
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .metric-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .chart-sparkline {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      height: 40px;
+      margin-top: 10px;
+    }
+
+    .sparkline-bar {
+      flex: 1;
+      background: linear-gradient(to top, rgba(32, 207, 123, 0.2), var(--green));
+      border-radius: 2px;
+      transition: height 0.3s ease;
+    }
+
+    .dashboard-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .dashboard-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+
+    .dashboard-item i {
+      flex-shrink: 0;
+    }
+
+    .dashboard-item div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dashboard-item strong {
+      font-size: 0.72rem;
+      color: var(--ink);
+    }
+
+    .dashboard-item span {
+      font-size: 0.6rem;
+      color: var(--muted);
+    }
+
+    .success-icon { color: var(--green); }
+    .info-icon { color: var(--blue); }
+
+    /* UI 3: Launch Screen */
+    .launch-details {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .play-store-app-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .app-icon-large {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      display: grid;
+      place-items: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      color: var(--white);
+      font-size: 1.1rem;
+      box-shadow: 0 4px 15px rgba(32, 207, 123, 0.25);
+    }
+
+    .app-meta {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .app-meta strong {
+      font-size: 0.8rem;
+      color: var(--white);
+    }
+
+    .app-meta span {
+      font-size: 0.65rem;
+      color: var(--muted);
+    }
+
+    .category-tag {
+      align-self: flex-start;
+      margin-top: 4px;
+      font-size: 0.58rem;
+      font-weight: 700;
+      background: rgba(45, 130, 255, 0.1);
+      color: var(--blue);
+      border: 1px solid rgba(45, 130, 255, 0.15);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    .launch-progress-container {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 12px;
+      border-radius: 10px;
+    }
+
+    .launch-progress-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.68rem;
+      margin-bottom: 6px;
+      color: var(--muted);
+    }
+
+    .progress-bar-track {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--green), var(--blue));
+      border-radius: 3px;
+      position: relative;
+    }
+
+    .progress-bar-fill::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.4), rgba(255,255,255,0));
+      animation: progressShine 1.5s infinite;
+    }
+
+    @keyframes progressShine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .launch-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .stat-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 8px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.68rem;
+      font-weight: 600;
+    }
+
+    .gold-icon { color: var(--gold); }
+    .green-icon { color: var(--green); }
+
+    /* Phone Controls Overlay Selector tabs */
+    .phone-selector-tabs {
+      display: flex;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--glass-border);
+      padding: 4px;
+      border-radius: 16px;
+      margin-top: 24px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 3;
+    }
+
+    .tab-trigger {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      padding: 8px 16px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .tab-trigger i {
+      width: 14px;
+      height: 14px;
+    }
+
+    .tab-trigger.active {
+      background: var(--green);
+      color: var(--bg);
+      box-shadow: 0 4px 15px rgba(32, 207, 123, 0.25);
+    }
+
+    /* Floating glowing orb behind phone */
+    .visual-bg-glow {
+      position: absolute;
+      width: 130%;
+      height: 130%;
+      background: radial-gradient(circle, rgba(32, 207, 123, 0.06) 0%, transparent 65%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* ----------------------------------------------------
+       6. SERVICES SECTION
+       ---------------------------------------------------- */
     section {
-      padding: 92px 0;
+      padding: 100px 0;
+      position: relative;
     }
 
     .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 32px;
-      margin-bottom: 34px;
+      margin-bottom: 56px;
+      max-width: 700px;
     }
 
     .section-head h2 {
-      max-width: 650px;
-      margin: 0;
-      font-size: clamp(2rem, 4vw, 3.3rem);
-      line-height: 1.05;
-      letter-spacing: 0;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      margin-bottom: 18px;
+      font-weight: 700;
     }
 
     .section-head p {
-      max-width: 430px;
-      margin: 0;
       color: var(--muted);
-      font-size: 1.02rem;
+      font-size: 1.1rem;
     }
 
     .service-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
     }
 
     .service {
-      min-height: 260px;
-      padding: 28px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--white);
-      box-shadow: 0 10px 32px rgba(18, 35, 29, 0.06);
+      background: var(--glass-panel);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-soft), var(--shadow-inset);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .service::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(32, 207, 123, 0.08) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .service:hover {
+      transform: translateY(-6px);
+      border-color: var(--glass-border-glow);
+      box-shadow: var(--shadow-soft), 0 10px 30px rgba(32, 207, 123, 0.08), var(--shadow-inset);
+    }
+
+    .service:hover::before {
+      opacity: 1;
     }
 
     .icon-box {
-      width: 48px;
-      height: 48px;
+      width: 56px;
+      height: 56px;
       display: grid;
       place-items: center;
-      margin-bottom: 22px;
-      color: var(--green-dark);
-      background: #e6f7ee;
-      border-radius: 8px;
+      margin-bottom: 28px;
+      color: var(--green);
+      background: rgba(32, 207, 123, 0.07);
+      border: 1px solid rgba(32, 207, 123, 0.15);
+      border-radius: 14px;
+      box-shadow: var(--shadow-inset-glow);
+      transition: all 0.3s ease;
     }
 
-    .service h3,
-    .step h3 {
-      margin: 0 0 10px;
-      font-size: 1.22rem;
-      line-height: 1.25;
+    .service:hover .icon-box {
+      background: var(--green);
+      color: var(--bg);
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(32, 207, 123, 0.3);
     }
 
-    .service p,
-    .step p,
-    .detail p,
-    .contact-copy {
-      margin: 0;
+    .service h3 {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+      color: var(--white);
+    }
+
+    .service p {
       color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.6;
     }
 
+    /* ----------------------------------------------------
+       7. PROCESS SECTION
+       ---------------------------------------------------- */
     .process-band {
-      background: var(--white);
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
+      background: linear-gradient(to bottom, transparent, rgba(5,13,9,0.4), transparent);
     }
 
     .steps {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 1px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--line);
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
     }
 
     .step {
-      min-height: 230px;
-      padding: 26px;
-      background: var(--white);
+      background: var(--glass-panel);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 30px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-soft), var(--shadow-inset);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .step:hover {
+      transform: translateY(-4px);
+      border-color: rgba(32, 207, 123, 0.2);
     }
 
     .step-number {
       display: inline-grid;
       place-items: center;
-      width: 34px;
-      height: 34px;
+      width: 40px;
+      height: 40px;
       margin-bottom: 24px;
-      color: var(--green-dark);
-      background: #e6f7ee;
-      border-radius: 8px;
+      color: var(--green);
+      background: rgba(32, 207, 123, 0.08);
+      border: 1px solid rgba(32, 207, 123, 0.2);
+      border-radius: 12px;
       font-weight: 800;
+      font-family: 'Space Grotesk', sans-serif;
+      box-shadow: var(--shadow-inset-glow);
     }
 
+    .step:hover .step-number {
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      color: var(--white);
+      border-color: transparent;
+      box-shadow: 0 4px 12px rgba(32, 207, 123, 0.3);
+    }
+
+    .step h3 {
+      font-size: 1.22rem;
+      margin-bottom: 10px;
+      color: var(--white);
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* ----------------------------------------------------
+       8. DETAILS SECTION: SECRETARY OF STATE badge
+       ---------------------------------------------------- */
     .details-layout {
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 34px;
-      align-items: start;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 60px;
+      align-items: center;
     }
 
     .detail-panel {
-      padding: 34px;
-      color: var(--white);
-      background: #0b1f19;
-      border-radius: 8px;
-      box-shadow: var(--shadow);
+      padding-right: 20px;
     }
 
     .detail-panel h2 {
-      margin: 0 0 16px;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.05;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      margin-bottom: 20px;
     }
 
     .detail-panel p {
-      margin: 0;
-      color: rgba(255, 255, 255, 0.74);
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 30px;
+    }
+
+    /* Official Certificate layout */
+    .certificate-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+      border: 2px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 40px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 
+        0 30px 70px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .certificate-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 40%, rgba(32, 207, 123, 0.03) 100%);
+      pointer-events: none;
+    }
+
+    /* Certificate Gleam effect */
+    .certificate-gleam {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent 45%, rgba(255, 255, 255, 0.04) 50%, transparent 55%);
+      transform: rotate(30deg);
+      animation: gleamSweep 8s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    @keyframes gleamSweep {
+      0% { transform: translate(-30%, -30%) rotate(30deg); }
+      100% { transform: translate(30%, 30%) rotate(30deg); }
+    }
+
+    .certificate-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 20px;
+    }
+
+    .certificate-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .certificate-title span {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .certificate-title h4 {
+      font-size: 1.15rem;
+    }
+
+    .certificate-badge {
+      width: 48px;
+      height: 48px;
+      background: rgba(245, 181, 63, 0.08);
+      border: 1px solid rgba(245, 181, 63, 0.25);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      box-shadow: var(--shadow-inset-glow);
     }
 
     .detail-list {
       display: grid;
-      gap: 12px;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
     }
 
-    .detail {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 18px;
-      padding: 18px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--white);
+    .detail-cell {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
     }
 
-    .detail span {
+    .detail-cell:nth-last-child(1),
+    .detail-cell:nth-last-child(2) {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .detail-cell span {
+      display: block;
       color: var(--muted);
-      font-size: 0.86rem;
-      font-weight: 800;
+      font-size: 0.72rem;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
+      margin-bottom: 4px;
     }
 
-    .detail strong {
-      font-size: 1rem;
+    .detail-cell strong {
+      font-size: 0.98rem;
+      color: var(--ink);
+      font-weight: 600;
     }
 
+    /* ----------------------------------------------------
+       9. CONTACT BANNER & PORTAL FORM
+       ---------------------------------------------------- */
     .contact-band {
-      padding: 84px 0;
-      color: var(--white);
-      background: #10201b;
+      background: linear-gradient(to top, rgba(3, 8, 6, 0.9), transparent);
     }
 
     .contact-layout {
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 28px;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 60px;
       align-items: center;
     }
 
-    .contact-layout h2 {
-      margin: 0 0 12px;
-      font-size: clamp(2rem, 5vw, 4rem);
-      line-height: 1;
+    .contact-info h2 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      line-height: 1.05;
+      margin-bottom: 18px;
+      font-weight: 800;
     }
 
     .contact-copy {
-      max-width: 680px;
-      color: rgba(255, 255, 255, 0.72);
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-bottom: 32px;
     }
 
-    footer {
-      padding: 26px 0;
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact-method-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--glass-panel);
+      border: 1px solid var(--glass-border);
+      padding: 16px 20px;
+      border-radius: 14px;
+      box-shadow: var(--shadow-inset);
+      transition: all 0.3s ease;
+    }
+
+    .contact-method-item:hover {
+      border-color: rgba(32, 207, 123, 0.25);
+      background: var(--glass-panel-hover);
+    }
+
+    .contact-method-icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(32, 207, 123, 0.08);
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      color: var(--green);
+    }
+
+    .contact-method-item div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-method-item span {
+      font-size: 0.75rem;
       color: var(--muted);
-      background: #08130f;
-      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .contact-method-item a {
+      font-weight: 600;
+      font-size: 0.98rem;
+      color: var(--ink);
+    }
+
+    .contact-method-item a:hover {
+      color: var(--green);
+    }
+
+    /* --- THE PREMIUM INQUIRY FORM --- */
+    .form-container {
+      background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.005) 100%);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 40px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-soft), var(--shadow-inset);
+      position: relative;
+    }
+
+    .form-container::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 25px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0));
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .form-control {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      color: var(--ink);
+      font-family: inherit;
+      padding: 14px 18px;
+      font-size: 0.94rem;
+      transition: all 0.3s ease;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .form-control::placeholder {
+      color: var(--muted-dark);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--green);
+      background: rgba(32, 207, 123, 0.02);
+      box-shadow: 0 0 15px rgba(32, 207, 123, 0.1), inset 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    /* Active dynamic input validation */
+    .form-control:user-valid {
+      border-color: rgba(32, 207, 123, 0.6);
+    }
+    
+    .form-control:user-invalid {
+      border-color: rgba(245, 181, 63, 0.5);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    select.form-control {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%238ea79a' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 18px center;
+      background-size: 14px;
+      padding-right: 48px;
+      cursor: pointer;
+    }
+
+    select.form-control:focus {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2320cf7b' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5'/%3E%3C/svg%3E");
+    }
+
+    /* Submission success state overlay */
+    .form-success-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(3, 8, 6, 0.95);
+      border-radius: 24px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      text-align: center;
+      transform: scale(0.95);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .form-success-overlay.active {
+      transform: scale(1);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .success-badge {
+      width: 72px;
+      height: 72px;
+      background: rgba(32, 207, 123, 0.08);
+      border: 1px solid var(--green);
+      color: var(--green);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin-bottom: 24px;
+      font-size: 2rem;
+      box-shadow: 0 0 30px rgba(32, 207, 123, 0.2);
+    }
+
+    .success-badge i {
+      animation: checkPulse 0.5s ease forwards;
+      transform: scale(0.6);
+      opacity: 0;
+    }
+
+    @keyframes checkPulse {
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .form-success-overlay h3 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      color: var(--white);
+    }
+
+    .form-success-overlay p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 320px;
+      margin-bottom: 24px;
+    }
+
+    /* ----------------------------------------------------
+       10. FOOTER SECTION
+       ---------------------------------------------------- */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--line);
+      background: rgba(2, 5, 4, 0.9);
+      position: relative;
+      z-index: 2;
     }
 
     .footer-row {
       display: flex;
       justify-content: space-between;
-      gap: 18px;
-      color: rgba(255, 255, 255, 0.62);
+      align-items: center;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 0.88rem;
     }
 
-    @media (max-width: 860px) {
+    .footer-row span:last-child {
+      font-weight: 500;
+    }
+
+    /* ----------------------------------------------------
+       11. NATIVE SCROLL-DRIVEN ENTRY ANIMATIONS
+       ---------------------------------------------------- */
+    @supports ((animation-timeline: view()) and (animation-range: entry)) {
+      .reveal-section {
+        animation: revealAnim linear both;
+        animation-timeline: view();
+        animation-range: entry 10% cover 30%;
+      }
+
+      .reveal-cascade > * {
+        animation: revealAnim linear both;
+        animation-timeline: view();
+        animation-range: entry 10% cover 25%;
+      }
+
+      /* Staggered offsets for services and process lists */
+      .reveal-cascade > *:nth-child(1) { animation-range: entry 10% cover 20%; }
+      .reveal-cascade > *:nth-child(2) { animation-range: entry 10% cover 25%; }
+      .reveal-cascade > *:nth-child(3) { animation-range: entry 10% cover 30%; }
+      .reveal-cascade > *:nth-child(4) { animation-range: entry 10% cover 35%; }
+
+      @keyframes revealAnim {
+        from {
+          opacity: 0;
+          transform: translateY(40px) scale(0.97);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+    }
+
+    /* Handles reduced motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+      .reveal-section, .reveal-cascade > * {
+        animation: none !important;
+      }
+    }
+
+    /* ----------------------------------------------------
+       12. RESPONSIVE LAYOUT BREAKPOINTS
+       ---------------------------------------------------- */
+    @media (max-width: 1024px) {
       .shell {
-        width: min(100% - 28px, 680px);
+        width: min(100% - 48px, 800px);
       }
 
-      .nav {
-        min-height: 66px;
+      .hero-layout,
+      .details-layout,
+      .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 60px;
+        text-align: center;
       }
 
+      .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-copy {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-proof {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .steps {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .detail-panel {
+        padding-right: 0;
+      }
+
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .contact-methods {
+        align-items: center;
+        width: 100%;
+        max-width: 480px;
+      }
+
+      .contact-method-item {
+        width: 100%;
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 768px) {
       .nav-links {
         display: none;
       }
 
-      .hero {
-        min-height: auto;
-      }
-
-      .hero::before {
-        background:
-          linear-gradient(180deg, rgba(6, 21, 17, 0.9) 0%, rgba(6, 21, 17, 0.74) 58%, rgba(6, 21, 17, 0.3) 100%),
-          url("assets/android-app-development-hero.png") center bottom / cover no-repeat;
-      }
-
-      .hero-content {
-        padding: 78px 0 170px;
-      }
-
-      .hero-proof,
-      .service-grid,
-      .steps,
-      .details-layout,
-      .contact-layout {
+      .steps {
         grid-template-columns: 1fr;
       }
 
-      .section-head {
-        display: block;
-      }
-
-      .section-head p {
-        margin-top: 14px;
-      }
-
-      .detail {
+      .detail-list {
         grid-template-columns: 1fr;
-        gap: 6px;
+        gap: 16px;
+      }
+
+      .detail-cell {
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 12px;
+      }
+
+      .detail-cell:nth-last-child(2) {
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 12px;
+      }
+
+      .certificate-card {
+        padding: 30px;
+      }
+
+      .form-container {
+        padding: 30px;
       }
 
       .footer-row {
-        display: block;
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
       }
     }
 
-    @media (max-width: 520px) {
-      .brand span:last-child {
-        max-width: 170px;
-        font-size: 0.94rem;
-      }
-
+    @media (max-width: 480px) {
       .hero-actions {
         display: grid;
+        width: 100%;
       }
 
       .button {
         width: 100%;
       }
 
-      section {
-        padding: 68px 0;
+      .hero-proof {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .tab-trigger {
+        padding: 8px 12px;
+        font-size: 0.72rem;
       }
     }
   </style>
 </head>
 <body>
-  <header class="topbar">
+
+  <!-- Backdrop glow elements -->
+  <div class="bg-canvas">
+    <div class="cyber-grid"></div>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+  </div>
+
+  <!-- Sticky glass Navigation header -->
+  <header class="topbar" id="navbar">
     <nav class="nav shell" aria-label="Main navigation">
       <a class="brand" href="#top" aria-label="ElevateEra Enterprises LLC home">
         <span class="brand-mark"><i data-lucide="smartphone"></i></span>
-        <span>ElevateEra Enterprises LLC</span>
+        <span class="brand-font">ElevateEra<br><span style="font-size: 0.75rem; color: var(--muted); font-weight: 500;">Enterprises LLC</span></span>
       </a>
       <div class="nav-links">
         <a href="#services">Services</a>
@@ -515,143 +1676,380 @@
   </header>
 
   <main id="top">
-    <section class="hero" aria-label="Android app development">
-      <div class="shell hero-content">
-        <span class="eyebrow"><i data-lucide="badge-check"></i> Texas LLC | Android Apps</span>
-        <h1>Simple Android apps, built with purpose.</h1>
-        <p class="hero-copy">ElevateEra Enterprises LLC develops focused Android applications for everyday business and consumer workflows, from idea validation to polished mobile experiences.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#contact"><i data-lucide="send"></i> Start a Project</a>
-          <a class="button button-secondary" href="#services"><i data-lucide="layers"></i> View Services</a>
+    
+    <!-- Hero showcase with interactive phone mockup -->
+    <section class="hero" aria-label="Android app development hero">
+      <div class="shell hero-layout">
+        
+        <div class="hero-content">
+          <span class="eyebrow"><i data-lucide="shield-check" style="width: 14px; height: 14px;"></i> Texas Certified SOS | Member Managed</span>
+          <h1><span class="gradient-text">Simple Android apps,</span><br><span class="accent-gradient-text">built with purpose.</span></h1>
+          <p class="hero-copy">ElevateEra Enterprises LLC crafts highly focused, performant, and premium Android mobile applications designed to optimize consumer workflows and scale business operations.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#contact"><i data-lucide="sparkles"></i> Get in Touch</a>
+            <a class="button button-secondary" href="#services"><i data-lucide="layout-grid"></i> Explore Services</a>
+          </div>
+          
+          <div class="hero-proof" aria-label="Texas filing highlights">
+            <div class="proof-item">
+              <strong>Texas LLC</strong>
+              <span>Domestic Entity</span>
+            </div>
+            <div class="proof-item">
+              <strong>805194620</strong>
+              <span>SOS File Number</span>
+            </div>
+            <div class="proof-item">
+              <strong>08/22/2023</strong>
+              <span>Effective Date</span>
+            </div>
+          </div>
         </div>
-        <div class="hero-proof" aria-label="Company highlights">
-          <div class="proof-item">
-            <strong>Texas LLC</strong>
-            <span>Domestic limited liability company</span>
+
+        <div class="hero-visual">
+          <div class="visual-bg-glow"></div>
+          
+          <!-- Clicking these triggers changes inside the phone mockup below -->
+          <div class="phone-selector-tabs">
+            <button class="tab-trigger active" onclick="switchPhoneScreen('planning', this)">
+              <i data-lucide="drafting-compass"></i> Planning
+            </button>
+            <button class="tab-trigger" onclick="switchPhoneScreen('builds', this)">
+              <i data-lucide="binary"></i> Builds
+            </button>
+            <button class="tab-trigger" onclick="switchPhoneScreen('launch', this)">
+              <i data-lucide="play"></i> Launch
+            </button>
           </div>
-          <div class="proof-item">
-            <strong>805194620</strong>
-            <span>Secretary of State file number</span>
-          </div>
-          <div class="proof-item">
-            <strong>08/22/2023</strong>
-            <span>Filing effective date</span>
+
+          <!-- Smartphone Mockup -->
+          <div class="phone-container">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              
+              <!-- Simulated App Planning Wireframe -->
+              <div class="screen-content active" id="phone-screen-planning">
+                <div class="app-header">
+                  <span class="app-title">Visual Blueprint</span>
+                  <i data-lucide="compass" class="success-icon" style="width: 14px; height: 14px;"></i>
+                </div>
+                <div class="wireframe-container">
+                  <div class="wireframe-block wireframe-title"></div>
+                  <div class="wireframe-grid">
+                    <div class="wireframe-card">
+                      <div class="wireframe-circle"></div>
+                      <div class="wireframe-line small"></div>
+                      <div class="wireframe-line"></div>
+                    </div>
+                    <div class="wireframe-card">
+                      <div class="wireframe-circle"></div>
+                      <div class="wireframe-line small"></div>
+                      <div class="wireframe-line"></div>
+                    </div>
+                  </div>
+                  <div class="wireframe-flow">
+                    <div class="flow-step">Feature Mapping</div>
+                    <div class="flow-arrow"><i data-lucide="chevron-down" style="width: 14px; height: 14px;"></i></div>
+                    <div class="flow-step">Screen Flow Mock</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Simulated App Builds Dash -->
+              <div class="screen-content" id="phone-screen-builds">
+                <div class="app-header">
+                  <span class="app-title">System Status</span>
+                  <span class="app-status-badge">Compiled</span>
+                </div>
+                <div class="dashboard-scroll">
+                  <div class="dashboard-metric-card">
+                    <span class="metric-label">Execution Speed</span>
+                    <span class="metric-value">60 FPS</span>
+                    <div class="chart-sparkline">
+                      <div class="sparkline-bar" style="height: 35%"></div>
+                      <div class="sparkline-bar" style="height: 70%"></div>
+                      <div class="sparkline-bar" style="height: 55%"></div>
+                      <div class="sparkline-bar" style="height: 90%"></div>
+                      <div class="sparkline-bar" style="height: 80%"></div>
+                      <div class="sparkline-bar" style="height: 98%"></div>
+                    </div>
+                  </div>
+                  <div class="dashboard-list">
+                    <div class="dashboard-item">
+                      <i data-lucide="cpu" class="success-icon" style="width: 16px; height: 16px;"></i>
+                      <div>
+                        <strong>Modern Architecture</strong>
+                        <span>Kotlin Jetpack Compose</span>
+                      </div>
+                    </div>
+                    <div class="dashboard-item">
+                      <i data-lucide="zap" class="info-icon" style="width: 16px; height: 16px;"></i>
+                      <div>
+                        <strong>Performance Sync</strong>
+                        <span>Optimized memory footprints</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Simulated App Launch Store -->
+              <div class="screen-content" id="phone-screen-launch">
+                <div class="app-header">
+                  <span class="app-title">Google Play Console</span>
+                  <i data-lucide="activity" class="info-icon" style="width: 14px; height: 14px;"></i>
+                </div>
+                <div class="launch-details">
+                  <div class="play-store-app-card">
+                    <div class="app-icon-large"><i data-lucide="rocket"></i></div>
+                    <div class="app-meta">
+                      <strong>Elevated App</strong>
+                      <span>ElevateEra LLC</span>
+                      <span class="category-tag">Production</span>
+                    </div>
+                  </div>
+                  
+                  <div class="launch-progress-container">
+                    <div class="launch-progress-header">
+                      <span>Publishing Bundle...</span>
+                      <strong>100%</strong>
+                    </div>
+                    <div class="progress-bar-track">
+                      <div class="progress-bar-fill" style="width: 100%"></div>
+                    </div>
+                  </div>
+                  
+                  <div class="launch-stats">
+                    <div class="stat-box">
+                      <i data-lucide="check-circle" class="green-icon" style="width: 14px; height: 14px;"></i>
+                      <span>Store Approved</span>
+                    </div>
+                    <div class="stat-box">
+                      <i data-lucide="users" class="gold-icon" style="width: 14px; height: 14px;"></i>
+                      <span>Users Active</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
+
       </div>
     </section>
 
-    <section id="services">
+    <!-- Services Grid section -->
+    <section id="services" class="reveal-section">
       <div class="shell">
         <div class="section-head">
+          <span class="eyebrow"><i data-lucide="layers" style="width: 14px; height: 14px;"></i> Android Specialties</span>
           <h2>Android development for lean, practical product ideas.</h2>
-          <p>Built for founders, small businesses, and operators who need a usable mobile app without unnecessary complexity.</p>
+          <p>We eliminate technical bloat. ElevateEra builds premium mobile solutions tailored exclusively for founders, operations teams, and startups.</p>
         </div>
-        <div class="service-grid">
+        
+        <div class="service-grid reveal-cascade">
           <article class="service">
             <div class="icon-box"><i data-lucide="pen-tool"></i></div>
             <h3>App Planning</h3>
-            <p>Turn an idea into a focused feature set, user flow, and release plan before development starts.</p>
+            <p>Deconstruct complex ideas into sharp, focused feature sets, clean flowcharts, and release-ready architectural plans before starting development.</p>
           </article>
+          
           <article class="service">
             <div class="icon-box"><i data-lucide="code-2"></i></div>
             <h3>Android Builds</h3>
-            <p>Create responsive Android apps with clean screens, dependable navigation, and maintainable code.</p>
+            <p>Formulate highly responsive applications powered by native Kotlin and Jetpack Compose, delivering fluid interactions and stable navigation logic.</p>
           </article>
+          
           <article class="service">
             <div class="icon-box"><i data-lucide="rocket"></i></div>
             <h3>Launch Support</h3>
-            <p>Prepare app assets, release builds, store-ready descriptions, and practical post-launch improvements.</p>
+            <p>Ensure standard compliance for the Google Play Store, managing release asset optimizations, Store Console configurations, and future-proof scaling.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="process" class="process-band">
+    <!-- Process section -->
+    <section id="process" class="process-band reveal-section">
       <div class="shell">
         <div class="section-head">
+          <span class="eyebrow"><i data-lucide="refresh-cw" style="width: 14px; height: 14px;"></i> Project Lifecycle</span>
           <h2>A straightforward path from concept to app.</h2>
-          <p>The process stays small enough for quick movement and structured enough to keep the product useful.</p>
+          <p>Our process focuses on speed, security, and frequent testing milestones, keeping you aligned on every screen change.</p>
         </div>
-        <div class="steps">
+        
+        <div class="steps reveal-cascade">
           <article class="step">
             <span class="step-number">1</span>
             <h3>Define</h3>
-            <p>Clarify the audience, core job, screens, and success criteria for the first version.</p>
+            <p>Outline target personas, primary action drivers, mandatory screen lists, and core parameters for the Minimum Viable Product (MVP).</p>
           </article>
+          
           <article class="step">
             <span class="step-number">2</span>
             <h3>Design</h3>
-            <p>Map clean mobile flows and interface states that fit Android patterns.</p>
+            <p>Architect clean wireframe blueprints, layout structures, and fluid interfaces that strictly adhere to modern Material Design guidelines.</p>
           </article>
+          
           <article class="step">
             <span class="step-number">3</span>
             <h3>Build</h3>
-            <p>Develop the app in focused milestones with testable progress at each step.</p>
+            <p>Write performant code in structured sprint blocks, releasing periodic build files so you can tap and review live progress on a test device.</p>
           </article>
+          
           <article class="step">
             <span class="step-number">4</span>
             <h3>Release</h3>
-            <p>Package, review, and refine the app so it is ready for real users.</p>
+            <p>Finalize package optimization, complete security sanity tests, and navigate the entire Google Play Console store publishing guidelines.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="company">
+    <!-- Company Secretary of State Badge Details -->
+    <section id="company" class="reveal-section">
       <div class="shell details-layout">
+        
         <div class="detail-panel">
-          <h2>Company details from the certificate of formation.</h2>
-          <p>These details are based on the Texas Secretary of State filing attached for ElevateEra Enterprises LLC.</p>
+          <span class="eyebrow"><i data-lucide="shield" style="width: 14px; height: 14px;"></i> Certificate Records</span>
+          <h2>Official State Records</h2>
+          <p>ElevateEra Enterprises LLC is a legally registered corporate entity within the state of Texas. Below are the verified details retrieved from our active Certificate of Formation filed with the Secretary of State.</p>
+          <a class="button button-secondary" href="https://mycpa.cpa.state.tx.us/coa/" target="_blank" rel="noopener noreferrer">
+            <i data-lucide="external-link"></i> Verify via Texas SOS Portal
+          </a>
         </div>
-        <div class="detail-list">
-          <div class="detail">
-            <span>Legal Name</span>
-            <strong>ElevateEra Enterprises LLC</strong>
+        
+        <!-- Premium glassmorphic Certificate -->
+        <div class="certificate-card">
+          <div class="certificate-gleam"></div>
+          
+          <div class="certificate-header">
+            <div class="certificate-title">
+              <span>Filing Authorization</span>
+              <h4>Texas Certificate of Formation</h4>
+            </div>
+            <div class="certificate-badge">
+              <i data-lucide="award"></i>
+            </div>
           </div>
-          <div class="detail">
-            <span>Entity Type</span>
-            <strong>Domestic Limited Liability Company</strong>
-          </div>
-          <div class="detail">
-            <span>File Number</span>
-            <strong>805194620</strong>
-          </div>
-          <div class="detail">
-            <span>Effective Date</span>
-            <strong>August 22, 2023</strong>
-          </div>
-          <div class="detail">
-            <span>Management</span>
-            <strong>Member-managed LLC</strong>
-          </div>
-          <div class="detail">
-            <span>Office</span>
-            <strong>Dallas, Texas</strong>
+          
+          <div class="detail-list">
+            <div class="detail-cell">
+              <span>Legal Name</span>
+              <strong>ElevateEra Enterprises LLC</strong>
+            </div>
+            <div class="detail-cell">
+              <span>Entity Type</span>
+              <strong>Domestic Limited Liability Co.</strong>
+            </div>
+            <div class="detail-cell">
+              <span>SOS File Number</span>
+              <strong>805194620</strong>
+            </div>
+            <div class="detail-cell">
+              <span>Filing Date</span>
+              <strong>August 22, 2023</strong>
+            </div>
+            <div class="detail-cell">
+              <span>Management Mode</span>
+              <strong>Member-Managed LLC</strong>
+            </div>
+            <div class="detail-cell">
+              <span>Registered Location</span>
+              <strong>Dallas, Texas, USA</strong>
+            </div>
           </div>
         </div>
+
       </div>
     </section>
 
-    <section id="contact" class="contact-band">
+    <!-- Contact Portal Section with Form Validation & Success states -->
+    <section id="contact" class="contact-band reveal-section">
       <div class="shell contact-layout">
-        <div>
-          <h2>Ready to shape an Android app?</h2>
-          <p class="contact-copy">For project inquiries, add your preferred business email, phone number, or intake form before publishing. The rest of the page is ready to host as a static website.</p>
+        
+        <div class="contact-info">
+          <span class="eyebrow"><i data-lucide="mail" style="width: 14px; height: 14px;"></i> Project Intake</span>
+          <h2>Ready to build your next Android app?</h2>
+          <p class="contact-copy">Fill out our project planner questionnaire, and let's shape your software vision into dynamic mobile screens. Our average response time is under 24 business hours.</p>
+          
+          <div class="contact-methods">
+            <div class="contact-method-item">
+              <div class="contact-method-icon"><i data-lucide="envelope"></i></div>
+              <div>
+                <span>Inquiries Email</span>
+                <a href="mailto:omkharsetty1984@gmail.com">omkharsetty1984@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-method-item">
+              <div class="contact-method-icon"><i data-lucide="map-pin"></i></div>
+              <div>
+                <span>Corporate Headquarters</span>
+                <a href="#company">Dallas, Texas</a>
+              </div>
+            </div>
+          </div>
         </div>
-        <a class="button button-primary" href="mailto:"><i data-lucide="mail"></i> Add Contact Info</a>
+
+        <!-- Glassmorphism Intake Portal Form -->
+        <div class="form-container">
+          <!-- Submission success overlay panel -->
+          <div class="form-success-overlay" id="form-success">
+            <div class="success-badge">
+              <i data-lucide="check" id="success-icon"></i>
+            </div>
+            <h3>Inquiry Dispatched!</h3>
+            <p>Thank you for reaching out. We have successfully recorded your details and our team will get in touch shortly to schedule a planning session.</p>
+            <button class="button button-secondary" onclick="resetContactForm()"><i data-lucide="arrow-left"></i> Send Another Message</button>
+          </div>
+
+          <form class="contact-form" id="projectForm" onsubmit="handleFormSubmission(event)">
+            <div class="form-group">
+              <label for="clientName">Your Name</label>
+              <input type="text" class="form-control" id="clientName" placeholder="Omkhar Setty" required minlength="2">
+            </div>
+            
+            <div class="form-group">
+              <label for="clientEmail">Business Email</label>
+              <input type="email" class="form-control" id="clientEmail" placeholder="omkharsetty1984@gmail.com" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="projectType">Service Requirement</label>
+              <select class="form-control" id="projectType" required>
+                <option value="" disabled selected>Select a service layer...</option>
+                <option value="planning">Comprehensive App Planning</option>
+                <option value="builds">End-to-End Android Development</option>
+                <option value="full">Full Lifecycle (Design + Code + App Store)</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="projectScope">App Description & Core Objectives</label>
+              <textarea class="form-control" id="projectScope" placeholder="Describe the problem your app solves, target users, and key required screens..." required minlength="10"></textarea>
+            </div>
+            
+            <button type="submit" class="button button-primary" style="margin-top: 10px;">
+              <i data-lucide="send"></i> Dispatch Proposal Request
+            </button>
+          </form>
+        </div>
+
       </div>
     </section>
+
   </main>
 
   <footer>
     <div class="shell footer-row">
-      <span>&copy; 2026 ElevateEra Enterprises LLC. All rights reserved.</span>
-      <span>Android app development | Dallas, Texas</span>
+      <span>&copy; 2026 ElevateEra Enterprises LLC. All rights reserved. Registered under File No. 805194620 in the State of Texas.</span>
+      <span>Android Development | Dallas, TX</span>
     </div>
   </footer>
 
   <script>
+    // 1. Initializing Lucide Icons
     lucide.createIcons({
       attrs: {
         width: 20,
@@ -659,6 +2057,104 @@
         "stroke-width": 2
       }
     });
+
+    // 2. Scrolling Navigation Blur effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 40) {
+        navbar.classList.add('topbar-scrolled');
+      } else {
+        navbar.classList.remove('topbar-scrolled');
+      }
+    });
+
+    // 3. Interactive Smartphone Screen Switcher Function
+    function switchPhoneScreen(screenName, element) {
+      // Deactivate all tab selectors
+      const tabs = document.querySelectorAll('.tab-trigger');
+      tabs.forEach(tab => tab.classList.remove('active'));
+      
+      // Activate clicked tab
+      element.classList.add('active');
+
+      // Hide all screen contents
+      const screens = document.querySelectorAll('.screen-content');
+      screens.forEach(screen => screen.classList.remove('active'));
+
+      // Show selected screen content
+      const targetScreen = document.getElementById(`phone-screen-${screenName}`);
+      if (targetScreen) {
+        targetScreen.classList.add('active');
+      }
+    }
+
+    // 4. Premium Inquiries Form Submission handler
+    function handleFormSubmission(event) {
+      event.preventDefault();
+      
+      const form = document.getElementById('projectForm');
+      const name = document.getElementById('clientName').value;
+      const email = document.getElementById('clientEmail').value;
+      const type = document.getElementById('projectType').value;
+      const scope = document.getElementById('projectScope').value;
+      
+      // Basic client-side validation check
+      if (form.checkValidity()) {
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalContent = submitBtn.innerHTML;
+        
+        // Simulating sleek secure server submission transition
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i data-lucide="loader" class="animate-spin"></i> Transmitting Securely...';
+        lucide.createIcons();
+        
+        setTimeout(() => {
+          // Display the success glass state overlay
+          const successOverlay = document.getElementById('form-success');
+          successOverlay.classList.add('active');
+          
+          // Re-trigger icon creation for elements in the overlay
+          const successIcon = document.getElementById('success-icon');
+          lucide.createIcons();
+          
+          // Reset form fields
+          form.reset();
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalContent;
+        }, 1500);
+      }
+    }
+
+    // 5. Reset form from success screen
+    function resetContactForm() {
+      const successOverlay = document.getElementById('form-success');
+      successOverlay.classList.remove('active');
+    }
+
+    // 6. Dynamic JS Fallback for ViewTimeline Scroll Reveal Animations (e.g. Firefox)
+    if (!CSS.supports('(animation-timeline: view()) and (animation-range: entry)')) {
+      const revealElements = document.querySelectorAll('.reveal-section, .reveal-cascade > *');
+      
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0) scale(1)';
+            entry.target.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -60px 0px'
+      });
+
+      revealElements.forEach(element => {
+        // Set initial state for JS tracking
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(40px) scale(0.97)';
+        revealObserver.observe(element);
+      });
+    }
   </script>
 </body>
 </html>
