@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Privacy Policy for mobile applications developed by ElevateEra Enterprises LLC. Conforming to Google Play Console publishing guidelines.">
+  <title>Privacy Policy | ElevateEra Enterprises LLC</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  
+  <style>
+    :root {
+      /* Colors matching index.html */
+      --bg: #030806;
+      --bg-surface: #07110c;
+      --ink: #f0f5f2;
+      --muted: #8ea79a;
+      --muted-dark: #4b6659;
+      --line: rgba(255, 255, 255, 0.08);
+      
+      --green: #20cf7b;
+      --blue: #2d82ff;
+      --white: #ffffff;
+      
+      --glass-panel: rgba(255, 255, 255, 0.02);
+      --glass-border: rgba(255, 255, 255, 0.06);
+      
+      --shadow-soft: 0 12px 40px rgba(0, 0, 0, 0.6);
+      --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Background Elements */
+    .bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .cyber-grid {
+      position: absolute;
+      inset: 0;
+      background: 
+        linear-gradient(rgba(32, 207, 123, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(32, 207, 123, 0.015) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(circle at 50% 30%, black 30%, transparent 85%);
+      -webkit-mask-image: radial-gradient(circle at 50% 30%, black 30%, transparent 85%);
+    }
+
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(140px);
+      opacity: 0.3;
+      mix-blend-mode: screen;
+    }
+
+    .orb-1 {
+      top: -10%;
+      right: 10%;
+      width: 40vw;
+      height: 40vw;
+      background: radial-gradient(circle, rgba(32, 207, 123, 0.2) 0%, transparent 70%);
+    }
+
+    .orb-2 {
+      bottom: -10%;
+      left: 10%;
+      width: 40vw;
+      height: 40vw;
+      background: radial-gradient(circle, rgba(45, 130, 255, 0.15) 0%, transparent 70%);
+    }
+
+    .shell {
+      width: min(800px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 80px 0 100px;
+    }
+
+    /* Navigation header style links */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.94rem;
+      text-decoration: none;
+      margin-bottom: 40px;
+      transition: all 0.2s ease;
+    }
+
+    .back-btn:hover {
+      color: var(--green);
+      transform: translateX(-4px);
+    }
+
+    h1, h2, h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: -0.01em;
+      color: var(--white);
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      line-height: 1.1;
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+
+    .last-updated {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 48px;
+      font-weight: 500;
+    }
+
+    .content-card {
+      background: var(--glass-panel);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 40px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-soft), var(--shadow-inset);
+    }
+
+    /* Policy styling */
+    .policy-section {
+      margin-bottom: 36px;
+    }
+
+    .policy-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .policy-section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .policy-section h2 i {
+      color: var(--green);
+    }
+
+    .policy-section p {
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-size: 1rem;
+    }
+
+    .policy-section p strong {
+      color: var(--white);
+    }
+
+    .policy-section ul {
+      list-style-type: none;
+      margin-bottom: 16px;
+      padding-left: 8px;
+    }
+
+    .policy-section li {
+      color: var(--muted);
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      font-size: 0.98rem;
+    }
+
+    .policy-section li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: bold;
+    }
+
+    .policy-section a {
+      color: var(--green);
+      text-decoration: underline;
+      transition: color 0.2s ease;
+    }
+
+    .policy-section a:hover {
+      color: var(--white);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      color: var(--muted-dark);
+      font-size: 0.88rem;
+    }
+
+    @media (max-width: 768px) {
+      .shell {
+        padding: 50px 0 80px;
+      }
+      .content-card {
+        padding: 24px;
+        border-radius: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Backdrop glow elements -->
+  <div class="bg-canvas">
+    <div class="cyber-grid"></div>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+  </div>
+
+  <main class="shell">
+    <a href="index.html" class="back-btn"><i data-lucide="arrow-left"></i> Back to ElevateEra Home</a>
+    
+    <h1>Privacy Policy</h1>
+    <p class="last-updated">Effective Date: June 9, 2026</p>
+    
+    <div class="content-card">
+      
+      <div class="policy-section">
+        <h2><i data-lucide="info"></i> Introduction</h2>
+        <p>This Privacy Policy describes how <strong>ElevateEra Enterprises LLC</strong> ("we", "us", or "our"), a registered Domestic Limited Liability Company in the State of Texas (SOS File Number: 805194620), collects, uses, and discloses information when you use our mobile applications (collectively, the "Apps" or "Services").</p>
+        <p>We build focused, practical applications for Android devices. We are committed to protecting your privacy and ensuring you have a secure experience when using our Apps.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2><i data-lucide="database"></i> Information Collection and Use</h2>
+        <p>Our Apps are designed with a privacy-first architecture:</p>
+        <ul>
+          <li><strong>No Personal Information:</strong> Most of our Apps do not require you to create an account, register, or provide any personally identifiable information (PII) to use them.</li>
+          <li><strong>Local Storage:</strong> Unless explicitly stated otherwise for a specific app, any data you input, customize, or generate is stored securely and exclusively on your local device's memory. We do not transmit this data to our servers.</li>
+          <li><strong>Device & Usage Data:</strong> We do not track or upload device IDs, IP addresses, or hardware signatures to third-party tracking companies, unless necessary for Google Play Services to run.</li>
+        </ul>
+      </div>
+
+      <div class="policy-section">
+        <h2><i data-lucide="shield-alert"></i> Third-Party Services</h2>
+        <p>Our Apps are distributed through the Google Play Store. To enable core application services, update tracking, and security verification, our Apps may integrate standard SDKs provided by third-party services. These services may collect information used to identify your device in accordance with their respective privacy policies.</p>
+        <p>You can access the privacy policies of our standard third-party service providers below:</p>
+        <ul>
+          <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Play Services</a></li>
+          <li><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Google Analytics for Firebase (if used for crash reporting/analytics)</a></li>
+        </ul>
+      </div>
+
+      <div class="policy-section">
+        <h2><i data-lucide="trash-2"></i> Data Retention and Deletion</h2>
+        <p>Since the vast majority of our Apps store data strictly on your local device, we do not retain or control your personal data on external servers. You maintain complete control over your data and can delete it at any time by:</p>
+        <ul>
+          <li>Clearing the App's storage or cache in your Android system settings.</li>
+          <li>Uninstalling the App from your device.</li>
+        </ul>
+        <p>If you have submitted an inquiry or requested support via our website or email, we will retain your email address and message contents solely for the purpose of communicating with you and solving your request. You can request deletion of this inquiry data at any time by contacting us at <a href="mailto:elevateera@elevateeraent.com">elevateera@elevateeraent.com</a>.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2><i data-lucide="user-check"></i> Children's Privacy</h2>
+        <p>Our Apps are not designed to collect personal data from anyone, including children. We do not knowingly collect personally identifiable information from children under the age of 13. In the event that we discover a child under 13 has provided us with personal information, we immediately delete this from our database systems. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us so we can take the necessary deletion steps.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2><i data-lucide="shield"></i> Security</h2>
+        <p>We value your trust in using our Apps. Although our Apps primarily save data locally, any contact info shared with us via our intake portal is processed securely. We implement industry-standard administrative and technical measures to safeguard your communications. However, please remember that no method of transmission over the internet or method of electronic storage is 100% secure, and we cannot guarantee its absolute security.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2><i data-lucide="refresh-cw"></i> Changes to This Privacy Policy</h2>
+        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Effective Date" at the top. You are advised to review this Privacy Policy periodically for any changes.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2><i data-lucide="mail"></i> Contact Us</h2>
+        <p>If you have any questions, concerns, or requests regarding this Privacy Policy or your data, please contact us:</p>
+        <ul>
+          <li>By email: <a href="mailto:elevateera@elevateeraent.com">elevateera@elevateeraent.com</a></li>
+          <li>By visiting the company details on our homepage: <a href="index.html#company">ElevateEra Enterprises LLC</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <footer>
+      &copy; 2026 ElevateEra Enterprises LLC. Registered in Texas, USA (SOS File No. 805194620).
+    </footer>
+  </main>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons({
+      attrs: {
+        width: 18,
+        height: 18,
+        "stroke-width": 2.5
+      }
+    });
+  </script>
+</body>
+</html>
